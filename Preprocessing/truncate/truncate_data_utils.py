@@ -1,7 +1,8 @@
 from numpy import sqrt
 import pandas as pd
 
-from dataTest import velocity
+from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_pandas
+from ArmMovementPredictionStudien.Preprocessing.utils.velocity import generate_velocity_dataframe
 
 
 def find_maximum_velocity_of_trajectory(dataset, joint_type="w"):
@@ -85,7 +86,7 @@ def find_nearest_minimum_from_maximum_left_per_dimension(dataset, joint_type="w"
                 "index_v_max"].values[0]
         column = determine_index_of_column(dimension, joint_type)
         for index in range(index_v_max, -1, -1):
-            if dataset[column][index] < 0.0001: # TODO: Refactoring necessary, this does not work, use instead iloc[]
+            if dataset.iloc[index, column] < 0.0001:
                 index_left[dimension] = index + 1
                 break
     return index_left
@@ -100,43 +101,45 @@ def find_nearest_minimum_from_maximum_right_per_dimension(dataset, joint_type="w
                 "index_v_max"].values[0]
         column = determine_index_of_column(dimension, joint_type)
         for index in range(index_v_max, max_index + 1):
-            if dataset[column][index] < 0.0001:
+            if dataset.iloc[index, column] < 0.0001:
                 index_right[dimension] = index - 1
                 break
     return index_right
 
 
-def crop_dataset_velocity(dataset: pd.DataFrame, joint_type="w", threshold=0.01):
+def truncate_dataset_velocity(dataset: pd.DataFrame, joint_type="w", threshold=0.01):
     """
-    Crops **velocity** dataset from last zero value before maximum velocity to following zero value.
+    Truncates **velocity** dataset from last zero value before maximum velocity to following zero value.
 
     :param dataset: Input velocity dataset
-    :param joint_type: Chooses which joint type is used to crop the whole dataset (w, e, gh)
+    :param joint_type: Chooses which joint type is used to truncate the whole dataset (w, e, gh)
     :param threshold: factor for maximum velocity, every value below threshold*v_max is set to zero.
         Threshold=0 uses original dataset.
-    :return: new cropped dataset, indexes stay the same
+    :return: new truncated dataset, indexes stay the same
     """
     [index_left, index_right] = find_nearest_minima_from_maximum(dataset, joint_type=joint_type, threshold=threshold)
-    cropped_dataset = dataset.truncate(before=index_left, after=index_right)
-    return cropped_dataset
+    truncated_dataset = dataset.truncate(before=index_left, after=index_right)
+    return truncated_dataset
 
 
-def crop_dataset_position(filename, joint_type="w", threshold=0.01):
+def truncate_dataset_position(filename, joint_type="w", threshold=0.01, directory="./2_smoothed/"):
     """
-    Crops dataset **with raw position data** from last zero value before maximum velocity to following zero value.
+    Truncates dataset **with raw position data** from last zero value before maximum velocity to following zero value.
 
-    :param filename: Input filename of raw position dataset
-    :param joint_type: Chooses which joint type is used to crop the whole dataset (w, e, gh)
+    :param filename: Input filename of position dataset
+    :param joint_type: Chooses which joint type is used to truncate the whole dataset (w, e, gh)
     :param threshold: factor for maximum velocity, every value below threshold*v_max is set to zero.
         Threshold=0 uses original dataset.
-    :return: new cropped dataset as dataframe, indexes stay the same
+    :param directory: directory of files
+    :return: new truncated dataset as dataframe, indexes stay the same
     """
 
-    dataset = velocity.open_dataset_pandas(filename)
-    dataset_velocity = velocity.generate_velocity_dataframe(filename)
-    [index_left, index_right] = find_nearest_minima_from_maximum(dataset_velocity, joint_type=joint_type, threshold=threshold)
-    cropped_dataset = dataset.truncate(before=index_left, after=index_right)
-    return cropped_dataset
+    dataset = open_dataset_pandas(filename, directory=directory)
+    dataset_velocity = generate_velocity_dataframe(filename, directory)
+    [index_left, index_right] = \
+        find_nearest_minima_from_maximum(dataset_velocity, joint_type=joint_type, threshold=threshold)
+    truncated_dataset = dataset.truncate(before=index_left, after=index_right)
+    return truncated_dataset
 
 
 def determine_index_of_column(dimension, joint_type):
