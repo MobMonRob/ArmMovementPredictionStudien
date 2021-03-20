@@ -4,7 +4,7 @@ from ArmMovementPredictionStudien.Preprocessing.utils.velocity import generate_v
     calculate_velocity_of_trajectory
 import matplotlib.pyplot as plt
 
-file_selection = "20200423244_raw_R.csv"
+file_selection = "20200423117_truncated_R.csv"
 
 ROOT_DIR = os.path.dirname(__file__) + "/../../"
 
@@ -17,7 +17,7 @@ truncated_directory = base_directory + "3_truncated/"
 if file_selection.find("_") != 11:
     raise Exception("Wrong filename")
 file_id = file_selection[0:11]
-file_left_right = file_selection[16]
+file_left_right = file_selection[-5]
 file_extension = ".csv"
 
 filename_raw = file_id + "_raw_" + file_left_right + file_extension
@@ -43,6 +43,5 @@ axs[1, 0].plot(range(0, len(dataset_velocity_smoothed)), dataset_velocity_smooth
 axs[1, 0].set_title(filename_smoothed)
 axs[1, 1].plot(range(0, len(dataset_velocity_truncated)), dataset_velocity_truncated, 'tab:red')
 axs[1, 1].set_title(filename_truncated)
-
 
 plt.show()
