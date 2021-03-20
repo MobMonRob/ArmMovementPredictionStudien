@@ -45,45 +45,41 @@ def generate_smooth_dataframe(filename, directory, window=5):
 def median_filter(dataset, window=5):
     last_index = len(dataset) - 1
     filtered_dataset = np.empty(shape=(len(dataset), 9))
-    count = 0
     if window == 3:
-        filtered_dataset[0] = np.empty(9)
-        filtered_dataset[last_index] = np.empty(9)
+        filtered_dataset[0] = dataset[0]
+        filtered_dataset[last_index] = dataset[last_index]
 
         for i in range(1, len(dataset) - 1):
             values = [dataset[i - 1], dataset[i],
                       dataset[i + 1]]
             median_number = median(values, axis=0)
-            filtered_dataset[count] = median_number
-            count += 1
+            filtered_dataset[i] = median_number
 
     elif window == 5:
-        filtered_dataset[0] = np.empty(9)
-        filtered_dataset[1] = np.empty(9)
-        filtered_dataset[last_index - 1] = np.empty(9)
-        filtered_dataset[last_index] = np.empty(9)
+        filtered_dataset[0] = dataset[0]
+        filtered_dataset[1] = dataset[1]
+        filtered_dataset[last_index - 1] = dataset[last_index - 1]
+        filtered_dataset[last_index] = dataset[last_index]
 
         for i in range(2, len(dataset) - 2):
             values = [dataset[i - 2], dataset[i - 1], dataset[i],
                       dataset[i + 1], dataset[i + 2]]
             median_number = median(values, axis=0)
-            filtered_dataset[count] = median_number
-            count += 1
+            filtered_dataset[i] = median_number
 
     elif window == 7:
-        filtered_dataset[0] = np.empty(9)
-        filtered_dataset[1] = np.empty(9)
-        filtered_dataset[2] = np.empty(9)
-        filtered_dataset[last_index - 2] = np.empty(9)
-        filtered_dataset[last_index - 1] = np.empty(9)
-        filtered_dataset[last_index] = np.empty(9)
+        filtered_dataset[0] = dataset[0]
+        filtered_dataset[1] = dataset[1]
+        filtered_dataset[2] = dataset[2]
+        filtered_dataset[last_index - 2] = dataset[last_index - 2]
+        filtered_dataset[last_index - 1] = dataset[last_index - 1]
+        filtered_dataset[last_index] = dataset[last_index]
 
         for i in range(3, len(dataset) - 3):
             values = [dataset[i - 3], dataset[i - 2], dataset[i - 1], dataset[i],
                       dataset[i + 1], dataset[i + 2], dataset[i + 3]]
             median_number = median(values, axis=0)
-            filtered_dataset[count] = median_number
-            count += 1
+            filtered_dataset[i] = median_number
 
     else:
         raise Exception("Window has to be 3 or 5 or 7")
