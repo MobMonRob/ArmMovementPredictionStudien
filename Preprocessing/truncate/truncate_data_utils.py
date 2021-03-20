@@ -1,8 +1,8 @@
-from numpy import sqrt
 import pandas as pd
 
 from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_pandas
-from ArmMovementPredictionStudien.Preprocessing.utils.velocity import generate_velocity_dataframe
+from ArmMovementPredictionStudien.Preprocessing.utils.velocity import generate_velocity_dataframe, \
+    calculate_velocity_of_trajectory
 
 
 def find_maximum_velocity_of_trajectory(dataset, joint_type="w"):
@@ -18,16 +18,6 @@ def find_maximum_velocity_of_single_dimension(dataset: pd.DataFrame, dimension="
     max_v_index = velocity_data.abs().idxmax()
     v_max = abs(velocity_data[max_v_index])
     return pd.DataFrame(data={"index_v_max": [max_v_index], "v_max": [v_max]})
-
-
-def calculate_velocity_of_trajectory(dataset, joint_type="w"):
-    if joint_type == "w":
-        return sqrt(dataset.iloc[:, 0] ** 2 + dataset.iloc[:, 1] ** 2 + dataset.iloc[:, 2] ** 2)
-    if joint_type == "e":
-        return sqrt(dataset.iloc[:, 3] ** 2 + dataset.iloc[:, 4] ** 2 + dataset.iloc[:, 5] ** 2)
-    if joint_type == "gh":
-        return sqrt(dataset.iloc[:, 6] ** 2 + dataset.iloc[:, 7] ** 2 + dataset.iloc[:, 8] ** 2)
-    raise Exception("Choose 'w' for wrist, 'e' for elbow or 'gh' for shoulder")
 
 
 def round_velocity_below_threshold_to_zero(dataset: pd.DataFrame, joint_type="w", threshold=0.01):

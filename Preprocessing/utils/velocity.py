@@ -1,6 +1,6 @@
 import os
 
-from numpy import gradient
+from numpy import gradient, sqrt
 import pandas as pd
 from outliers import smirnov_grubbs as grubbs
 
@@ -26,8 +26,18 @@ def calculate_velocity_vector_for_dataset(filename, directory, remove_outliers=T
     return dataset_velocity
 
 
-def generate_velocity_dataframe(filename, directory):
-    dataset_velocity = calculate_velocity_vector_for_dataset(filename, directory)
+def calculate_velocity_of_trajectory(dataset, joint_type="w"):
+    if joint_type == "w":
+        return sqrt(dataset.iloc[:, 0] ** 2 + dataset.iloc[:, 1] ** 2 + dataset.iloc[:, 2] ** 2)
+    if joint_type == "e":
+        return sqrt(dataset.iloc[:, 3] ** 2 + dataset.iloc[:, 4] ** 2 + dataset.iloc[:, 5] ** 2)
+    if joint_type == "gh":
+        return sqrt(dataset.iloc[:, 6] ** 2 + dataset.iloc[:, 7] ** 2 + dataset.iloc[:, 8] ** 2)
+    raise Exception("Choose 'w' for wrist, 'e' for elbow or 'gh' for shoulder")
+
+
+def generate_velocity_dataframe(filename, directory, remove_outliers=True):
+    dataset_velocity = calculate_velocity_vector_for_dataset(filename, directory, remove_outliers)
     right_or_left = determine_left_or_right_dataset(filename)
     column_names = [
         "v_{r_l}WJC_x".format(r_l=right_or_left),
@@ -51,9 +61,3 @@ def write_velocity_dataset_to_csv(filename, directory):
     dataframe_velocity = generate_velocity_dataframe(filename, directory)
     new_filename = "../../DATA/data_velocity/" + filename.replace("truncated", "velocity")
     dataframe_velocity.to_csv(path_or_buf=new_filename, sep=';', index=False, float_format='%.4f', na_rep='NaN')
-
-
-if __name__ == '__main__':
-    temp_directory = "../../DATA/3_truncated/"
-    for file in os.listdir(temp_directory):
-        write_velocity_dataset_to_csv(file, temp_directory)
