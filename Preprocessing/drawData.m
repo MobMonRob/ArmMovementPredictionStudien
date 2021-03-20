@@ -18,6 +18,8 @@ function drawData(csvNumber,phaseNumber);
       phase = 'relocated';
     case 5
       phase = 'filtered';
+    case 99
+      phase = 'broken';
     otherwise
       phase = 'interpolated';
     endswitch
@@ -55,7 +57,13 @@ function drawData(csvNumber,phaseNumber);
     plot3(R(:,1),R(:,2),R(:,3), ";Handgelenk rechts;",R(:,4),R(:,5),R(:,6), ";Ellenbogen rechts;",R(:,7),R(:,8),R(:,9), ";Schulter rechts;",L(:,1),L(:,2),L(:,3), ";Handgelenk links;",L(:,4),L(:,5),L(:,6), ";Ellenbogen links;",L(:,7),L(:,8),L(:,9), ";Schulter links;");
   endif
   
-  title(strcat(num2str(csvNumber), "-", phase)); #set title
+  if(phase=='broken')
+    broken_file = fileread(csvPathRight);
+    broken_info = strsplit(broken_file,'\n'){1,1};
+    title(strcat(num2str(csvNumber), "-",broken_info));
+  else
+    title(strcat(num2str(csvNumber), "-", phase)); #set title
+  endif
   xlabel('x');
   ylabel('y');
   zlabel('z');
