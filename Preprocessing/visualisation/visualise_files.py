@@ -4,7 +4,7 @@ from ArmMovementPredictionStudien.Preprocessing.utils.velocity import generate_v
     calculate_velocity_of_trajectory
 import matplotlib.pyplot as plt
 
-file_selection = "20200423117_truncated_R.csv"
+file_selection = "20200423291_truncated_L.csv"
 
 ROOT_DIR = os.path.dirname(__file__) + "/../../"
 
