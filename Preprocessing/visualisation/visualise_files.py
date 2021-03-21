@@ -3,8 +3,10 @@ import os
 from ArmMovementPredictionStudien.Preprocessing.utils.velocity import generate_velocity_dataframe, \
     calculate_velocity_of_trajectory
 import matplotlib.pyplot as plt
+from random import shuffle
 
-file_selection = "20200423291_truncated_L.csv"
+pick_random_file = False
+file_selection = "20200403155_truncated_L.csv"
 
 ROOT_DIR = os.path.dirname(__file__) + "/../../"
 
@@ -13,6 +15,11 @@ raw_directory = base_directory + "0_raw/"
 interpolated_directory = base_directory + "1_interpolated/"
 smoothed_directory = base_directory + "2_smoothed/"
 truncated_directory = base_directory + "3_truncated/"
+
+if pick_random_file:
+    all_files = os.listdir(raw_directory)
+    shuffle(all_files)
+    file_selection = all_files[0]
 
 if file_selection.find("_") != 11:
     raise Exception("Wrong filename")
@@ -43,5 +50,7 @@ axs[1, 0].plot(range(0, len(dataset_velocity_smoothed)), dataset_velocity_smooth
 axs[1, 0].set_title(filename_smoothed)
 axs[1, 1].plot(range(0, len(dataset_velocity_truncated)), dataset_velocity_truncated, 'tab:red')
 axs[1, 1].set_title(filename_truncated)
+
+print(filename_raw)
 
 plt.show()
