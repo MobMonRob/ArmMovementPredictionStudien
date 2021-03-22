@@ -53,7 +53,7 @@ function drawData(csvNumber,phaseNumber);
     plot3(R(:,1),R(:,2),R(:,3), ";Handgelenk rechts;",R(:,4),R(:,5),R(:,6), ";Ellenbogen rechts;",R(:,7),R(:,8),R(:,9), ";Schulter rechts;",L(:,1),L(:,2),L(:,3), ";Handgelenk links;",L(:,4),L(:,5),L(:,6), ";Ellenbogen links;",L(:,7),L(:,8),L(:,9), ";Schulter links;");
   endif
   
-  if(phase=='broken')
+  if(strcmp(phase,'broken'))
     broken_file = fileread(csvPathRight);
     broken_info = strsplit(broken_file,'\n'){1,1};
     title(strcat(num2str(csvNumber), "-",broken_info));
