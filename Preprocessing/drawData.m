@@ -5,8 +5,6 @@ function drawData(csvNumber,phaseNumber);
   phase='';
   switch (phaseNumber)
     case 0
-      csvPathLeft = ["../DATA/0_raw/" num2str(csvNumber) "_takeover_LGraspPhase.csv"];
-      csvPathRight = ["../DATA/0_raw/" num2str(csvNumber) "_takeover_RGraspPhase.csv"];
       phase='raw';
     case 1
       phase = 'interpolated';
@@ -23,10 +21,8 @@ function drawData(csvNumber,phaseNumber);
     otherwise
       phase = 'interpolated';
     endswitch
-  if (phaseNumber != 0)
-    csvPathLeft = ["../DATA/" num2str(phaseNumber) "_" phase "/" num2str(csvNumber) "_" phase "_L.csv"];
-    csvPathRight = ["../DATA/" num2str(phaseNumber) "_" phase "/" num2str(csvNumber) "_" phase "_R.csv"];
-  endif
+  csvPathLeft = ["../DATA/" num2str(phaseNumber) "_" phase "/" num2str(csvNumber) "_" phase "_L.csv"];
+  csvPathRight = ["../DATA/" num2str(phaseNumber) "_" phase "/" num2str(csvNumber) "_" phase "_R.csv"];
 
   error_L = false;
   error_R = false;
