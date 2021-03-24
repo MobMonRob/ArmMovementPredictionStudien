@@ -18,7 +18,9 @@ def determine_left_or_right_dataset(filename):
 def calculate_velocity_vector_for_dataset(filename, directory, remove_outliers=True):
     dataset = open_dataset_numpy(filename, directory)
     dataset_velocity = gradient(dataset, axis=0)
-    if remove_outliers:
+    if len(dataset_velocity) < 5:
+        print(f"{filename} has length {len(dataset_velocity)}")
+    elif remove_outliers:
         for col in range(0, len(dataset_velocity[0]) - 1):
             indices = grubbs.two_sided_test_indices(dataset_velocity[:, col], alpha=0.01)  # alpha needs to be so small
             for i in indices:
