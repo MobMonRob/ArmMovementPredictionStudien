@@ -34,7 +34,9 @@ for file in filelist_truncated:
         velocity_truncated_df = generate_velocity_dataframe(file, truncated_directory)
         max_v = find_maximum_velocity_of_trajectory(velocity_truncated_df)
         max_velocity_truncated.update({file: max_v.iloc[0, 1]})
-    except ValueError:
+        if max_v.iloc[0, 1] > 1000:
+            print(f"{file}; v_max: {max_v.iloc[0, 1]}")
+    except TypeError:
         print(file)
 
 fig, ax = plt.subplots(2, 2)
