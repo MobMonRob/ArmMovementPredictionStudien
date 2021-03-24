@@ -4,7 +4,7 @@ from ArmMovementPredictionStudien.Preprocessing.utils.velocity import generate_v
     calculate_velocity_of_trajectory
 import matplotlib.pyplot as plt
 
-file_selection = "20200403044_truncated_R.csv"
+file_selection = "20200423327_raw_L.csv"
 
 ROOT_DIR = os.path.dirname(__file__) + "/../../"
 
@@ -38,10 +38,10 @@ fig, axs = plt.subplots(2, 2)
 axs[0, 0].plot(range(0, len(dataset_velocity_raw)), dataset_velocity_raw)
 axs[0, 0].set_title(filename_raw)
 axs[0, 1].plot(range(0, len(dataset_velocity_interpolated)), dataset_velocity_interpolated, 'tab:orange')
-axs[0, 1].set_title("Truncated = 200; max_threshold = 0.07")
+axs[0, 1].set_title("Truncated = 150; max_threshold = 0.1")
 axs[1, 0].plot(range(0, len(dataset_velocity_smoothed)), dataset_velocity_smoothed, 'tab:green')
-axs[1, 0].set_title("Truncated = 160; max_threshold = 0.07")
+axs[1, 0].set_title("Truncated = 120; max_threshold = 0.1")
 axs[1, 1].plot(range(0, len(dataset_velocity_truncated)), dataset_velocity_truncated, 'tab:red')
-axs[1, 1].set_title("Truncated = 200; max_threshold = 0.1")
+axs[1, 1].set_title("Truncated = 120; max_threshold = 0.17")
 
 plt.show()
