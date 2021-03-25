@@ -15,7 +15,11 @@ function drawData(csvNumber,phaseNumber);
     case 4 
       phase = 'relocated';
     case 5
+      phase = 'prefiltered'
+    case 6
       phase = 'filtered';
+    case 98
+      phase = 'broken_prefiltered';
     case 99
       phase = 'broken';
     otherwise
@@ -53,8 +57,12 @@ function drawData(csvNumber,phaseNumber);
     plot3(R(:,1),R(:,2),R(:,3), ";Handgelenk rechts;",R(:,4),R(:,5),R(:,6), ";Ellenbogen rechts;",R(:,7),R(:,8),R(:,9), ";Schulter rechts;",L(:,1),L(:,2),L(:,3), ";Handgelenk links;",L(:,4),L(:,5),L(:,6), ";Ellenbogen links;",L(:,7),L(:,8),L(:,9), ";Schulter links;");
   endif
   
-  if(strcmp(phase,'broken'))
-    broken_file = fileread(csvPathRight);
+  if(strcmp(phase,'broken') || strcmp(phase, 'broken_prefiltered'))
+    try
+      broken_file = fileread(csvPathRight);
+    catch
+      broken_file = fileread(csvPathLeft);
+    end_try_catch
     broken_info = strsplit(broken_file,'\n'){1,1};
     title(strcat(num2str(csvNumber), "-",broken_info));
   else
