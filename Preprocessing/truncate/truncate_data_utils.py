@@ -76,7 +76,7 @@ def find_nearest_minimum_from_maximum_left_per_dimension(dataset, joint_type="w"
                 "index_v_max"].values[0]
         column = determine_index_of_column(dimension, joint_type)
         for index in range(index_v_max, -1, -1):
-            if dataset.iloc[index, column] < 0.0001:
+            if abs(dataset.iloc[index, column]) < 0.0001:
                 index_left[dimension] = index + 1
                 break
     return index_left
@@ -91,7 +91,7 @@ def find_nearest_minimum_from_maximum_right_per_dimension(dataset, joint_type="w
                 "index_v_max"].values[0]
         column = determine_index_of_column(dimension, joint_type)
         for index in range(index_v_max, max_index + 1):
-            if dataset.iloc[index, column] < 0.0001:
+            if abs(dataset.iloc[index, column]) < 0.0001:
                 index_right[dimension] = index - 1
                 break
     return index_right
