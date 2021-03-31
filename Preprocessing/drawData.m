@@ -12,11 +12,13 @@ function drawData(csvNumber,phaseNumber);
       phase = 'smoothed';
     case 3
       phase = 'truncated';
-    case 4 
+    case 4
+      phase = 'mirrored';
+    case 5 
       phase = 'relocated';
-    case 5
-      phase = 'prefiltered'
     case 6
+      phase = 'prefiltered'
+    case 7
       phase = 'filtered';
     case 98
       phase = 'broken_prefiltered';
