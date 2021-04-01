@@ -1,5 +1,7 @@
 import os
 from math import sqrt
+from shutil import copy
+
 import pandas as pd
 import numpy as np
 from numpy.linalg import norm
@@ -29,6 +31,9 @@ filelist_left = []
 for file in os.listdir(directory):
     if "_L" in file:
         filelist_left.append(file)
+    if "_R" in file:
+        filename = file.replace("truncated", "mirrored")
+        copy(directory + file, "../../DATA/4_mirrored/" + filename)
 
 for file in filelist_left:
     dataset = open_dataset_pandas(file, directory=directory)
