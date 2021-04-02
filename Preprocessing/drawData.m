@@ -13,11 +13,11 @@ function drawData(csvNumber,phaseNumber);
     case 3
       phase = 'truncated';
     case 4
-      phase = 'mirrored';
+      phase = 'prefiltered';
     case 5 
-      phase = 'relocated';
+      phase = 'mirrored';
     case 6
-      phase = 'prefiltered'
+      phase = 'relocated'
     case 7
       phase = 'filtered';
     case 98
@@ -25,7 +25,7 @@ function drawData(csvNumber,phaseNumber);
     case 99
       phase = 'broken';
     otherwise
-      phase = 'interpolated';
+      phase = 'truncated';
     endswitch
   csvPathLeft = ["../DATA/" num2str(phaseNumber) "_" phase "/" num2str(csvNumber) "_" phase "_L.csv"];
   csvPathRight = ["../DATA/" num2str(phaseNumber) "_" phase "/" num2str(csvNumber) "_" phase "_R.csv"];

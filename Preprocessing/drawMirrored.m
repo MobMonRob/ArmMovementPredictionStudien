@@ -4,7 +4,7 @@
 function drawMirrored(csvNumber, origOrRight);
   csvPathOrig = ["../DATA/3_truncated/" num2str(csvNumber) "_truncated_L.csv"];
   csvPathRight = ["../DATA/3_truncated/" num2str(csvNumber) "_truncated_R.csv"];
-  csvPathMirrored = ["../DATA/4_mirrored/" num2str(csvNumber) "_mirrored_L.csv"];
+  csvPathMirrored = ["../DATA/5_mirrored/" num2str(csvNumber) "_mirrored_L.csv"];
 
   error_O = false;
   error_L = false;
