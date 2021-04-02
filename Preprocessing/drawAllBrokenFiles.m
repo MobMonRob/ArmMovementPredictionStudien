@@ -2,7 +2,7 @@
 
 function drawAllBrokenFiles(max);
   cd ..\DATA\99_broken
-  dirList = glob("*_broken_R.csv")
+  dirList = glob("*");
   cd ..\..\Preprocessing
   
   maxFileNumber = length(dirList);
@@ -10,11 +10,15 @@ function drawAllBrokenFiles(max);
     maxFileNumber = max;
   endif
   
+  prevFileNumber = 0;
   for i = 1:maxFileNumber
     fileName = dirList{i,1};
-    fileNumber = strsplit(fileName,'_'){1,1};
-    figure(i);
-    drawData(fileNumber,99);
+    fileNumber = strsplit(fileName,'_'){1,1}
+    if(fileNumber!=prevFileNumber)
+      figure(i);
+      drawData(fileNumber,99);
+    endif
+    prevFileNumber=fileNumber
   end
 
 end

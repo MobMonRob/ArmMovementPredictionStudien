@@ -61,12 +61,17 @@ function drawData(csvNumber,phaseNumber);
   
   if(strcmp(phase,'broken') || strcmp(phase, 'broken_prefiltered'))
     try
-      broken_file = fileread(csvPathRight);
+      broken_info_right = strsplit(fileread(csvPathRight),'\n'){1,1};
     catch
-      broken_file = fileread(csvPathLeft);
+      broken_info_right = "";
     end_try_catch
-    broken_info = strsplit(broken_file,'\n'){1,1};
-    title(strcat(num2str(csvNumber), "-",broken_info));
+    try
+      broken_info_left = strsplit(fileread(csvPathLeft),'\n'){1,1};
+    catch
+      broken_info_left = "";
+    end_try_catch
+    
+    title(strcat(num2str(csvNumber), "\nR: ",broken_info_right,"\nL: ",broken_info_left));
   else
     title(strcat(num2str(csvNumber), "-", phase)); #set title
   endif
