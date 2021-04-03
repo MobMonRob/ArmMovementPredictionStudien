@@ -13,12 +13,12 @@ function drawAllBrokenFiles(max);
   prevFileNumber = 0;
   for i = 1:maxFileNumber
     fileName = dirList{i,1};
-    fileNumber = strsplit(fileName,'_'){1,1}
-    if(fileNumber!=prevFileNumber)
+    fileNumber = strsplit(fileName,'_'){1,1};
+    if(!strcmp(fileNumber,prevFileNumber))
       figure(i);
       drawData(fileNumber,99);
     endif
-    prevFileNumber=fileNumber
+    prevFileNumber=fileNumber;
   end
 
 end
