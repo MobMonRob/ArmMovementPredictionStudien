@@ -9,6 +9,7 @@ from ArmMovementPredictionStudien.Preprocessing.mirror_left_files.mirror_left_fi
 from ArmMovementPredictionStudien.Preprocessing.mirror_left_files.mirror_left_files_utils import \
     make_datasets_the_same_length
 from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_pandas
+from scipy import stats
 
 
 directory = "../../DATA/4_prefiltered/"
@@ -26,6 +27,8 @@ sum_plane_both_sets = 0
 sum_plane_self = 0
 sum_plane_self_error = 0
 files_with_both_hands = []
+files_with_error = []
+filelength_both_hands = []
 
 for file in filelist_left:
     filename_right = file.replace("_L", "_R")
@@ -36,11 +39,13 @@ for file in filelist_left:
             dataset_l_for_plane, dataset_r_for_plane = make_datasets_the_same_length(file, directory)
             dataset_left = mirror_file_both_sets(dataset_l, dataset_r, dataset_l_for_plane, dataset_r_for_plane)
             sum_plane_both_sets += 1
-            files_with_both_hands.append(file) # TODO: wie lang sind die beschnittenen Datensätze im schnitt?
+            files_with_both_hands.append(file)
+            filelength_both_hands.append(len(dataset_l_for_plane))
         except (EOFError, ValueError):  # Right hand has only NaN after shifting or left hand is completely shit
             #  print_exc()
             dataset_left = mirror_file_one_set(dataset_l)
             sum_plane_self_error += 1
+            files_with_error.append(file)
             pass
     else:
         dataset_left = mirror_file_one_set(dataset_l)
@@ -54,4 +59,6 @@ for file in filelist_left:
 
 print(f"Both hands could be used: {sum_plane_both_sets}\nOne Hand could be used: {sum_plane_self}\n"
       f"One Hand with errors: {sum_plane_self_error}")
-print(files_with_both_hands)
+print(f"Both_hand_files: {files_with_both_hands}")
+print(f"Error_files: {files_with_error}")
+print(stats.describe(filelength_both_hands))
