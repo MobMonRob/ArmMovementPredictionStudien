@@ -2,8 +2,8 @@
 # 0 means original, 1 means right
 
 function drawMirrored(csvNumber, origOrRight);
-  csvPathOrig = ["../DATA/3_truncated/" num2str(csvNumber) "_truncated_L.csv"];
-  csvPathRight = ["../DATA/3_truncated/" num2str(csvNumber) "_truncated_R.csv"];
+  csvPathOrig = ["../DATA/4_prefiltered/" num2str(csvNumber) "_prefiltered_L.csv"];
+  csvPathRight = ["../DATA/4_prefiltered/" num2str(csvNumber) "_prefiltered_R.csv"];
   csvPathMirrored = ["../DATA/5_mirrored/" num2str(csvNumber) "_mirrored_L.csv"];
 
   error_O = false;

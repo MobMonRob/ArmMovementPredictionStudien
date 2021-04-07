@@ -59,20 +59,20 @@ def mirror_file_one_set(dataset):
     a, b, c, d = get_a_b_c_d(dataset)
     dataset_left = pd.DataFrame(columns=dataset.columns)
 
-    dataset_left.loc[0, 0:3] = dataset.iloc[0, 0:3]
-    dataset_left.loc[0, 3:6] = dataset.iloc[0, 3:6]
-    dataset_left.loc[0, 6:9] = dataset.iloc[0, 6:9]
+    dataset_left.at[0, 0:3] = dataset.iloc[0, 0:3]
+    dataset_left.at[0, 3:6] = dataset.iloc[0, 3:6]
+    dataset_left.at[0, 6:9] = dataset.iloc[0, 6:9]
     for index, row in dataset.iterrows():
         if 0 < index < dataset.index[-1]:
             x = row[0]
             y = row[1]
             z = row[2]
             mirrored_w = calculate_coordinates_of_mirrored_point(a, b, c, d, x, y, z)
-            dataset_left.loc[index, 0:3] = mirrored_w
-            dataset_left.loc[index, 3:6] = dataset.iloc[index, 3:6]
-            dataset_left.loc[index, 6:9] = dataset.iloc[index, 6:9]
-    dataset_left.loc[dataset.index[-1], 0:3] = dataset.iloc[dataset.index[-1], 0:3]
-    dataset_left.loc[dataset.index[-1], 3:6] = dataset.iloc[dataset.index[-1], 3:6]
-    dataset_left.loc[dataset.index[-1], 6:9] = dataset.iloc[dataset.index[-1], 6:9]
+            dataset_left.at[index, 0:3] = mirrored_w
+            dataset_left.at[index, 3:6] = dataset.iloc[index, 3:6]
+            dataset_left.at[index, 6:9] = dataset.iloc[index, 6:9]
+    dataset_left.at[dataset.index[-1], 0:3] = dataset.iloc[dataset.index[-1], 0:3]
+    dataset_left.at[dataset.index[-1], 3:6] = dataset.iloc[dataset.index[-1], 3:6]
+    dataset_left.at[dataset.index[-1], 6:9] = dataset.iloc[dataset.index[-1], 6:9]
 
     return dataset_left

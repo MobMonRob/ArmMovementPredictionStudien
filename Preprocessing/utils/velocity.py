@@ -15,16 +15,25 @@ def determine_left_or_right_dataset(filename):
     return "X"
 
 
-def calculate_velocity_vector_for_dataset(filename, directory, remove_outliers=True):
+def calculate_velocity_vector_for_dataset_filename(filename, directory, remove_outliers=True):
     dataset = open_dataset_numpy(filename, directory)
+    dataset_velocity = \
+        calculate_velocity_vector_for_dataset(dataset, remove_outliers=remove_outliers, filename=filename)
+    return dataset_velocity
+
+
+def calculate_velocity_vector_for_dataset(dataset, remove_outliers=True, filename='dataset'):
     dataset_velocity = gradient(dataset, axis=0)
     if len(dataset_velocity) < 5:
         print(f"{filename} has length {len(dataset_velocity)}")
     elif remove_outliers:
-        for col in range(0, len(dataset_velocity[0]) - 1):
-            indices = grubbs.two_sided_test_indices(dataset_velocity[:, col], alpha=0.01)  # alpha needs to be so small
-            for i in indices:
-                dataset_velocity[i, col] = float('NaN')
+        try:
+            for col in range(0, len(dataset_velocity[0]) - 1):
+                indices = grubbs.two_sided_test_indices(dataset_velocity[:, col], alpha=0.01)  # alpha needs to be so small
+                for i in indices:
+                    dataset_velocity[i, col] = float('NaN')
+        except TypeError:
+            print(f"No len() in {filename}")
     return dataset_velocity
 
 
@@ -39,7 +48,7 @@ def calculate_velocity_of_trajectory(dataset, joint_type="w"):
 
 
 def generate_velocity_dataframe(filename, directory, remove_outliers=True):
-    dataset_velocity = calculate_velocity_vector_for_dataset(filename, directory, remove_outliers)
+    dataset_velocity = calculate_velocity_vector_for_dataset_filename(filename, directory, remove_outliers)
     right_or_left = determine_left_or_right_dataset(filename)
     column_names = [
         "v_{r_l}WJC_x".format(r_l=right_or_left),
