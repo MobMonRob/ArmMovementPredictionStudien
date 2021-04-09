@@ -4,7 +4,7 @@ from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_
 import pandas as pd
 
 
-def write_endpoints_to_csv(date, left_right, directory):
+def write_endpoints_to_csv(date, left_right):
     if date == "0305":
         if left_right == "R":
             file_list = file_list_0305_R
@@ -68,7 +68,7 @@ for file in file_list_directory:
     else:
         raise Exception(f"File '{file}' not assignable.")
 
-write_endpoints_to_csv("0423", "L", directory)
+write_endpoints_to_csv("0305", "R")
 
 
 
