@@ -3,6 +3,7 @@ import os
 from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_pandas, open_dataset_numpy
 import pandas as pd
 
+
 def write_endpoints_to_csv(date, left_right, directory):
     if date == "0305":
         if left_right == "R":
@@ -22,7 +23,7 @@ def write_endpoints_to_csv(date, left_right, directory):
         if left_right == "R":
             file_list = file_list_0423_R
         elif left_right == "L":
-            file_list = file_list_0403_L
+            file_list = file_list_0423_L
         else:
             raise Exception(f"[L]eft or [R]ight")
     else:
