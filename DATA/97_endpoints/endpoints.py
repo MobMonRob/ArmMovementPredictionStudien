@@ -67,7 +67,7 @@ for file in file_list_directory:
     else:
         raise Exception(f"File '{file}' not assignable.")
 
-write_endpoints_to_csv("0305", "L", directory)
+write_endpoints_to_csv("0423", "L", directory)
 
 
 
