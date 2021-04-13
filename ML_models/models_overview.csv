@@ -1,0 +1,4 @@
+midpoint; number_of_test_data; number_of_train_data; euclid_test; euclid_training; mse_test; mse_training; mae_test; mae_training; accuracy_test; accuracy_training; model_number
+80;78;699;217.606;273.967;0.043;0.008;0.165;0.06;0.731;0.888;217.606_273.967.json
+80;78;699;258.23;280.217;0.063;0.007;0.197;0.055;0.692;0.897;258.23_280.217.json
+80;78;699;269.805;301.456;0.063;0.008;0.204;0.062;0.705;0.885;269.805_301.456.json
