@@ -8,7 +8,10 @@ from ArmMovementPredictionStudien.Preprocessing.utils.velocity import generate_v
 def find_maximum_velocity_of_trajectory(dataset, joint_type="w"):
     velocity_data = calculate_velocity_of_trajectory(dataset, joint_type)
     max_v_index = velocity_data.abs().idxmax()
-    v_max = abs(velocity_data[max_v_index])
+    try:
+        v_max = abs(velocity_data[max_v_index])
+    except KeyError:
+        raise Exception("No v_max detectable, probably every values is NaN")
     return pd.DataFrame(data={"index_v_max": [max_v_index], "v_max": [v_max]})
 
 
