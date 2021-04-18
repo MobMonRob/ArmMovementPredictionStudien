@@ -68,6 +68,30 @@ def generate_velocity_dataframe(filename, directory, remove_outliers=True):
     return dataframe_velocity
 
 
+def generate_acceleration_dataframe(dataset, filename='dataset', remove_outliers=True):
+    dataset_velocity = \
+        calculate_velocity_vector_for_dataset(dataset, filename=filename, remove_outliers=remove_outliers)
+    dataset_acceleration = \
+        calculate_velocity_vector_for_dataset(dataset_velocity, filename=filename, remove_outliers=remove_outliers)
+    right_or_left = determine_left_or_right_dataset(filename)
+    column_names = [
+        "a_{r_l}WJC_x".format(r_l=right_or_left),
+        "a_{r_l}WJC_y".format(r_l=right_or_left),
+        "a_{r_l}WJC_z".format(r_l=right_or_left),
+        "a_{r_l}EJC_x".format(r_l=right_or_left),
+        "a_{r_l}EJC_y".format(r_l=right_or_left),
+        "a_{r_l}EJC_z".format(r_l=right_or_left),
+        "a_{r_l}GHJC_x".format(r_l=right_or_left),
+        "a_{r_l}GHJC_y".format(r_l=right_or_left),
+        "a_{r_l}GHJC_z".format(r_l=right_or_left)
+    ]
+    dataframe_acceleration = pd.DataFrame(
+        data=dataset_acceleration,
+        columns=[column_names]
+    )
+    return dataframe_acceleration
+
+
 def write_velocity_dataset_to_csv(filename, directory):
     dataframe_velocity = generate_velocity_dataframe(filename, directory)
     new_filename = "../../DATA/data_velocity/" + filename.replace("truncated", "velocity")

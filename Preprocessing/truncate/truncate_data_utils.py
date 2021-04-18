@@ -2,7 +2,7 @@ import pandas as pd
 
 from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_pandas
 from ArmMovementPredictionStudien.Preprocessing.utils.velocity import generate_velocity_dataframe, \
-    calculate_velocity_of_trajectory
+    calculate_velocity_of_trajectory, calculate_velocity_vector_for_dataset, generate_acceleration_dataframe
 
 
 def find_maximum_velocity_of_trajectory(dataset, joint_type="w"):
@@ -132,6 +132,20 @@ def truncate_dataset_position(filename, joint_type="w", threshold=0.01, director
     [index_left, index_right] = \
         find_nearest_minima_from_maximum(dataset_velocity, joint_type=joint_type, threshold=threshold)
     truncated_dataset = dataset.truncate(before=index_left, after=index_right)
+    if len(truncated_dataset) > 150 and threshold < 0.3:
+        return truncate_dataset_position(filename, joint_type=joint_type, threshold=threshold+0.01, directory=directory)
+    print(f"{filename};{threshold};{len(truncated_dataset)}")
+    truncated_dataset = truncated_dataset.reset_index(drop=True)
+    return truncated_dataset, threshold
+
+
+def truncate_dataset_position_with_acceleration(filename, joint_type="w", threshold=0.01, directory="./2_smoothed/"):
+    dataset, th = truncate_dataset_position(filename, joint_type=joint_type, threshold=threshold, directory=directory)
+    dataset = dataset.reset_index(drop=True)
+    dataset_acceleration = generate_acceleration_dataframe(dataset, filename=filename)
+    [index_left, index_right] = \
+        find_nearest_minima_from_maximum(dataset_acceleration, joint_type=joint_type, threshold=th)
+    truncated_dataset = dataset.truncate(before=index_left)
     return truncated_dataset
 
 
