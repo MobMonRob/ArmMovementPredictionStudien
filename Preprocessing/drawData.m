@@ -24,6 +24,8 @@ function drawData(csvNumber,phaseNumber);
       phase = 'broken_prefiltered';
     case 99
       phase = 'broken';
+    case 71
+      phase = 'broken';
     otherwise
       phase = 'truncated';
     endswitch
