@@ -1,4 +1,4 @@
-z-difference=0.688, hand-distance=0.643, elbow-hand-distance=0
+z-difference=0.688, hand-distance=0.643, elbow-hand-distance=0, manual broken:False
 0.0000;0.0000;0.0000;7.9273;93.0366;191.3155;NaN;NaN;NaN
 -0.2624;0.1371;0.0779;7.9685;93.1592;191.3825;NaN;NaN;NaN
 -0.5969;0.2302;0.2195;8.0379;93.2651;191.4846;NaN;NaN;NaN
