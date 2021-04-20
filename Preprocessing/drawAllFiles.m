@@ -28,7 +28,8 @@ function drawAllFiles(phaseNumber=4, side='both',bodyPart='hand');
         case 99
             phase = 'broken';
         endswitch
-    directory = ["../DATA/" num2str(phaseNumber) "_" phase ];
+    #directory = ["../DATA/" num2str(phaseNumber) "_" phase ];
+    directory = ["../DATA/8_endpoint_rotated"]
     cd(directory)
 
     if(!strcmp(side,'both'))
