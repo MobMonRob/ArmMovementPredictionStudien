@@ -125,10 +125,10 @@ def mirror_file_both_sets(dataset_l, dataset_r, dataset_l_for_plane, dataset_r_f
     dataset_left = pd.DataFrame(columns=dataset_l.columns)
 
     for index, row in dataset_l.iterrows():
-        x = row[0]
-        y = row[1]
-        z = row[2]
-        mirrored_w = calculate_coordinates_of_mirrored_point(a, b, c, d, x, y, z)
+        mirrored_w = calculate_coordinates_of_mirrored_point(a, b, c, d, row[0], row[1], row[2])
+        mirrored_e = calculate_coordinates_of_mirrored_point(a, b, c, d, row[3], row[4], row[5])
+        mirrored_s = calculate_coordinates_of_mirrored_point(a, b, c, d, row[6], row[7], row[8])
         dataset_left.at[index, 0:3] = mirrored_w
-        dataset_left.at[index, 3:9] = dataset_l.iloc[index, 3:9]
+        dataset_left.at[index, 3:6] = mirrored_e
+        dataset_left.at[index, 6:9] = mirrored_s
     return dataset_left

@@ -64,13 +64,12 @@ def mirror_file_one_set(dataset):
     dataset_left.at[0, 6:9] = dataset.iloc[0, 6:9]
     for index, row in dataset.iterrows():
         if 0 < index < dataset.index[-1]:
-            x = row[0]
-            y = row[1]
-            z = row[2]
-            mirrored_w = calculate_coordinates_of_mirrored_point(a, b, c, d, x, y, z)
+            mirrored_w = calculate_coordinates_of_mirrored_point(a, b, c, d, row[0], row[1], row[2])
+            mirrored_e = calculate_coordinates_of_mirrored_point(a, b, c, d, row[3], row[4], row[5])
+            mirrored_s = calculate_coordinates_of_mirrored_point(a, b, c, d, row[6], row[7], row[8])
             dataset_left.at[index, 0:3] = mirrored_w
-            dataset_left.at[index, 3:6] = dataset.iloc[index, 3:6]
-            dataset_left.at[index, 6:9] = dataset.iloc[index, 6:9]
+            dataset_left.at[index, 3:6] = mirrored_e
+            dataset_left.at[index, 6:9] = mirrored_s
     dataset_left.at[dataset.index[-1], 0:3] = dataset.iloc[dataset.index[-1], 0:3]
     dataset_left.at[dataset.index[-1], 3:6] = dataset.iloc[dataset.index[-1], 3:6]
     dataset_left.at[dataset.index[-1], 6:9] = dataset.iloc[dataset.index[-1], 6:9]
