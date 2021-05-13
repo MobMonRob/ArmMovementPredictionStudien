@@ -17,7 +17,7 @@ ROOT_DIR = os.path.dirname(__file__) + "/../"
 
 
 def calculate_trajectory(file_selection=file_selected, pick_random_file=random_file, end_point=np.array([0, 0, 0]),
-                         lastindex=-1, method=mjm):
+                         lastindex=-1, method=mjm, sample_length=85):
     base_directory = ROOT_DIR + "DATA/"
     filtered_directory = base_directory + "7_filtered/"
 
@@ -49,9 +49,9 @@ def calculate_trajectory(file_selection=file_selected, pick_random_file=random_f
     elif method == "mjm":
         df_mjm = calculate_minimum_jerk(startpoint, endpoint, last_index)
     elif method == "mjm_curved":
-        df_mjm = calculate_minimum_jerk_curved(df_orig.iloc[0:85, :], endpoint, last_index)  # Input of first x points
+        df_mjm = calculate_minimum_jerk_curved(df_orig.iloc[0:sample_length, :], endpoint, last_index)  # Input of first x points
     elif method == "mjm_curved_full":
-        df_mjm = calculate_minimum_jerk_curved_full(df_orig.iloc[0:85, :], endpoint,
+        df_mjm = calculate_minimum_jerk_curved_full(df_orig.iloc[0:sample_length, :], endpoint,
                                                     last_index)  # Input of first x points
     elif method == "mjm_pmv":
         df_mjm = calculate_minimum_jerk_with_pmv(startpoint, endpoint, df_orig_v[0], df_orig_v[-1], df_orig_a[0],
