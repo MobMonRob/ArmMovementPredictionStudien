@@ -49,9 +49,9 @@ def calculate_trajectory(file_selection=file_selected, pick_random_file=random_f
     elif method == "mjm":
         df_mjm = calculate_minimum_jerk(startpoint, endpoint, last_index)
     elif method == "mjm_curved":
-        df_mjm = calculate_minimum_jerk_curved(df_orig.iloc[0:40, :], endpoint, last_index)  # Input of first x points
+        df_mjm = calculate_minimum_jerk_curved(df_orig.iloc[0:85, :], endpoint, last_index)  # Input of first x points
     elif method == "mjm_curved_full":
-        df_mjm = calculate_minimum_jerk_curved_full(df_orig.iloc[0:40, :], endpoint,
+        df_mjm = calculate_minimum_jerk_curved_full(df_orig.iloc[0:85, :], endpoint,
                                                     last_index)  # Input of first x points
     elif method == "mjm_pmv":
         df_mjm = calculate_minimum_jerk_with_pmv(startpoint, endpoint, df_orig_v[0], df_orig_v[-1], df_orig_a[0],
@@ -123,7 +123,7 @@ def calculate_minimum_jerk_curved_full(startmovement, endpoint, last_index):
     x_1 = startmovement.iloc[t_1]
     x_f = endpoint
 
-    dataset_mjm = startmovement.iloc[0:t_1+1, :]
+    dataset_mjm = pd.DataFrame()
 
     tau_1 = t_1 / t_f
     c = 1 / (t_f ** 5 * tau_1 ** 2 * (1 - tau_1) ** 5) * (
@@ -131,6 +131,13 @@ def calculate_minimum_jerk_curved_full(startmovement, endpoint, last_index):
             + tau_1 ** 2 * (-720 * x_f + 120 * x_1 + 600 * x_0) + (x_0 - x_1) * (300 * tau_1 - 200))
     pi = 1 / (t_f ** 5 * tau_1 ** 5 * (1 - tau_1) ** 5) * (
             (x_f - x_0) * (120 * tau_1 ** 5 - 300 * tau_1 ** 4 + 200 * tau_1 ** 3) - 20 * (x_1 - x_0))
+
+    for t in range(0, t_1 + 1):
+        tau = t / t_f
+        point = t_f ** 5 / 720 * (pi * (tau_1 ** 4 * (15 * tau ** 4 - 30 * tau ** 3) + tau_1 ** 3 * (
+                 80 * tau ** 3 - 30 * tau ** 4) - 60 * tau ** 3 * tau_1 **2 + 30 * tau ** 4 * tau_1 - 6 * tau ** 5)
+                                  + c * (15 * tau ** 4 - 10 * tau ** 3 - 6 * tau ** 5)) + x_0
+        dataset_mjm = dataset_mjm.append(point, ignore_index=True)
 
     for t in range(t_1 + 1, t_f + 1):
         tau = t / t_f
