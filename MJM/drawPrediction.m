@@ -1,4 +1,4 @@
-# e.g. drawData(20020403011, 0)
+# e.g. drawPrediction(20020403011, 0)
 # 0 is right, 1 is left
 
 function drawPrediction(csvNumber, right_or_left);
