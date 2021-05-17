@@ -28,7 +28,8 @@ function drawAllFiles(phaseNumber=4, side='both',bodyPart='hand');
         case 99
             phase = 'broken';
         endswitch
-    directory = ["../DATA/" num2str(phaseNumber) "_" phase ];
+    directory = ["../DATA/8_70_rotated"]
+    #directory = ["../DATA/" num2str(phaseNumber) "_" phase ];
     #directory = ["../DATA/8_endpoint_rotated"]
     cd(directory)
 
@@ -58,7 +59,7 @@ function drawAllFiles(phaseNumber=4, side='both',bodyPart='hand');
             plot3(A(:,1),A(:,2),A(:,3), A(:,4),A(:,5),A(:,6), A(:,7),A(:,8),A(:,9));
         endif
         if(phaseNumber==8)
-            #scatter3(A(80,1),A(80,2),A(80,3),100,'filled')
+            scatter3(A(70,1),A(70,2),A(70,3),100,'filled')
         endif
         hold on;
     endfor
