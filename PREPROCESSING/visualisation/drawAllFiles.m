@@ -28,9 +28,7 @@ function drawAllFiles(phaseNumber=4, side='both',bodyPart='hand');
         case 99
             phase = 'broken';
         endswitch
-    directory = ["../DATA/8_70_rotated"]
-    #directory = ["../DATA/" num2str(phaseNumber) "_" phase ];
-    #directory = ["../DATA/8_endpoint_rotated"]
+    directory = ["../../DATA/" num2str(phaseNumber) "_" phase ];
     cd(directory)
 
     if(!strcmp(side,'both'))
@@ -38,7 +36,7 @@ function drawAllFiles(phaseNumber=4, side='both',bodyPart='hand');
     else
         dirList = glob("*");
     endif
-    cd('../../Preprocessing')
+    cd('../../PREPROCESSING/visualisation')
     maxFileNumber = length(dirList);
     figure;
     for i = 1:maxFileNumber

@@ -29,8 +29,8 @@ function drawData(csvNumber,phaseNumber);
     otherwise
       phase = 'truncated';
     endswitch
-  csvPathLeft = ["../DATA/" num2str(phaseNumber) "_" phase "/" num2str(csvNumber) "_" phase "_L.csv"];
-  csvPathRight = ["../DATA/" num2str(phaseNumber) "_" phase "/" num2str(csvNumber) "_" phase "_R.csv"];
+  csvPathLeft = ["../../DATA/" num2str(phaseNumber) "_" phase "/" num2str(csvNumber) "_" phase "_L.csv"];
+  csvPathRight = ["../../DATA/" num2str(phaseNumber) "_" phase "/" num2str(csvNumber) "_" phase "_R.csv"];
 
   error_L = false;
   error_R = false;
@@ -54,11 +54,11 @@ function drawData(csvNumber,phaseNumber);
   endif
 
   if(error_L)
-    plot3(R(:,1),R(:,2),R(:,3), ";Handgelenk rechts;",R(:,4),R(:,5),R(:,6), ";Ellenbogen rechts;",R(:,7),R(:,8),R(:,9), ";Schulter rechts;");
+    plot3(R(:,1),R(:,2),R(:,3), ";hand right;",R(:,4),R(:,5),R(:,6), ";elbow right;",R(:,7),R(:,8),R(:,9), ";shoulder right;");
   elseif(error_R)
-    plot3(L(:,1),L(:,2),L(:,3), ";Handgelenk links;",L(:,4),L(:,5),L(:,6), ";Ellenbogen links;",L(:,7),L(:,8),L(:,9), ";Schulter links;");
+    plot3(L(:,1),L(:,2),L(:,3), ";hand left;",L(:,4),L(:,5),L(:,6), ";elbow left;",L(:,7),L(:,8),L(:,9), ";shoulder left;");
   else
-    plot3(R(:,1),R(:,2),R(:,3), ";Handgelenk rechts;",R(:,4),R(:,5),R(:,6), ";Ellenbogen rechts;",R(:,7),R(:,8),R(:,9), ";Schulter rechts;",L(:,1),L(:,2),L(:,3), ";Handgelenk links;",L(:,4),L(:,5),L(:,6), ";Ellenbogen links;",L(:,7),L(:,8),L(:,9), ";Schulter links;");
+    plot3(R(:,1),R(:,2),R(:,3), ";hand right;",R(:,4),R(:,5),R(:,6), ";elbow right;",R(:,7),R(:,8),R(:,9), ";shoulder right;",L(:,1),L(:,2),L(:,3), ";hand left;",L(:,4),L(:,5),L(:,6), ";elbow left;",L(:,7),L(:,8),L(:,9), ";shoulder left;");
   endif
   
   if(strcmp(phase,'broken') || strcmp(phase, 'broken_prefiltered'))
