@@ -4,7 +4,7 @@ from numpy import gradient, sqrt
 import pandas as pd
 from outliers import smirnov_grubbs as grubbs
 
-from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_numpy
+from ArmMovementPredictionStudien.PREPROCESSING.utils.utils import open_dataset_numpy
 
 
 def determine_left_or_right_dataset(filename):

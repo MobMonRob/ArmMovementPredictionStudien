@@ -1,6 +1,6 @@
 import os
 
-from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_pandas, open_dataset_numpy
+from ArmMovementPredictionStudien.PREPROCESSING.utils.utils import open_dataset_pandas, open_dataset_numpy
 import pandas as pd
 
 

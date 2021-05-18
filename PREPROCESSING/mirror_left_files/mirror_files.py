@@ -2,13 +2,13 @@ import os
 from shutil import copy
 from traceback import print_exc
 
-from ArmMovementPredictionStudien.Preprocessing.mirror_left_files.mirror_left_files_plane_both_sets import \
+from ArmMovementPredictionStudien.PREPROCESSING.mirror_left_files.mirror_left_files_plane_both_sets import \
     mirror_file_both_sets
-from ArmMovementPredictionStudien.Preprocessing.mirror_left_files.mirror_left_files_plane_self import \
+from ArmMovementPredictionStudien.PREPROCESSING.mirror_left_files.mirror_left_files_plane_self import \
     mirror_file_one_set
-from ArmMovementPredictionStudien.Preprocessing.mirror_left_files.mirror_left_files_utils import \
+from ArmMovementPredictionStudien.PREPROCESSING.mirror_left_files.mirror_left_files_utils import \
     make_datasets_the_same_length
-from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_pandas
+from ArmMovementPredictionStudien.PREPROCESSING.utils.utils import open_dataset_pandas
 from scipy import stats
 
 

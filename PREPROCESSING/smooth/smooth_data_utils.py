@@ -6,8 +6,8 @@ import pandas as pd
 from numpy import mean, median
 from scipy.signal import savgol_filter
 
-from ArmMovementPredictionStudien.Preprocessing.utils import velocity
-from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_numpy
+from ArmMovementPredictionStudien.PREPROCESSING.utils import velocity
+from ArmMovementPredictionStudien.PREPROCESSING.utils.utils import open_dataset_numpy
 
 
 def filter_dataset(filename, directory, method, window=7):

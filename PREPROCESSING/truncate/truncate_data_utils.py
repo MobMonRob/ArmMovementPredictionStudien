@@ -1,7 +1,7 @@
 import pandas as pd
 
-from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_pandas
-from ArmMovementPredictionStudien.Preprocessing.utils.velocity import generate_velocity_dataframe, \
+from ArmMovementPredictionStudien.PREPROCESSING.utils.utils import open_dataset_pandas
+from ArmMovementPredictionStudien.PREPROCESSING.utils.velocity import generate_velocity_dataframe, \
     calculate_velocity_of_trajectory, calculate_velocity_vector_for_dataset, generate_acceleration_dataframe
 
 

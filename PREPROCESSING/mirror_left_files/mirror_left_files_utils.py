@@ -1,8 +1,8 @@
 from pandas import isnull
 
-from ArmMovementPredictionStudien.Preprocessing.truncate.truncate_data_utils import find_maximum_velocity_of_trajectory
-from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_pandas
-from ArmMovementPredictionStudien.Preprocessing.utils.velocity import calculate_velocity_of_trajectory, \
+from ArmMovementPredictionStudien.PREPROCESSING.truncate.truncate_data_utils import find_maximum_velocity_of_trajectory
+from ArmMovementPredictionStudien.PREPROCESSING.utils.utils import open_dataset_pandas
+from ArmMovementPredictionStudien.PREPROCESSING.utils.velocity import calculate_velocity_of_trajectory, \
     generate_velocity_dataframe
 
 

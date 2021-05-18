@@ -1,6 +1,6 @@
 import os
 
-from ArmMovementPredictionStudien.Preprocessing.smooth import smooth_data_utils
+from ArmMovementPredictionStudien.PREPROCESSING.smooth import smooth_data_utils
 
 directory = "../../DATA/1_interpolated/"
 

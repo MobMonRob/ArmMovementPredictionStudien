@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 from numpy.linalg import norm
 
-from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_pandas
+from ArmMovementPredictionStudien.PREPROCESSING.utils.utils import open_dataset_pandas
 
 
 def calculate_coordinates_of_mirrored_point(line_startpoint, line_endpoint, point_to_mirror):

@@ -3,11 +3,11 @@ import os
 from numpy import sqrt
 from numpy.random import shuffle
 
-from ArmMovementPredictionStudien.Preprocessing.smooth import smooth_data_utils
+from ArmMovementPredictionStudien.PREPROCESSING.smooth import smooth_data_utils
 
 import matplotlib.pyplot as plt
 
-from ArmMovementPredictionStudien.Preprocessing.utils.velocity import calculate_velocity_vector_for_dataset_filename
+from ArmMovementPredictionStudien.PREPROCESSING.utils.velocity import calculate_velocity_vector_for_dataset_filename
 
 
 def generate_smooth_data():

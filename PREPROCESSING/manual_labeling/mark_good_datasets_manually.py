@@ -1,8 +1,8 @@
 import os
 from tkinter import *
 
-from ArmMovementPredictionStudien.Preprocessing.utils.utils import open_dataset_numpy
-from ArmMovementPredictionStudien.Preprocessing.visualisation.visualise_files import visualise
+from ArmMovementPredictionStudien.PREPROCESSING.utils.utils import open_dataset_numpy
+from ArmMovementPredictionStudien.PREPROCESSING.visualisation.visualise_files import visualise
 import matplotlib.pyplot as plt
 
 first = True
