@@ -1,9 +1,10 @@
-# draws files in 99_broken dir
+# e.g. drawAllBrokenFiles(20)
+# visualize broken files (from filtering)
 
 function drawAllBrokenFiles(max);
-  cd ..\DATA\71_broken
+  cd ..\..\DATA\99_broken
   dirList = glob("*");
-  cd ..\..\Preprocessing
+  cd ..\..\Preprocessing\visualisation
   
   maxFileNumber = length(dirList);
   if (max<length(dirList))
@@ -16,7 +17,7 @@ function drawAllBrokenFiles(max);
     fileNumber = strsplit(fileName,'_'){1,1};
     if(!strcmp(fileNumber,prevFileNumber))
       figure(i);
-      drawData(fileNumber,71);
+      drawData(fileNumber,99);
     endif
     prevFileNumber=fileNumber;
   end
