@@ -3,14 +3,27 @@
 Arm movement prediction for collaborative robotics based on neuronal networks.
 
 ## Usage
+### Setup
+- Install Python 3.7
+- Install [Jupyter Notebook](https://jupyter.org/install.html)
+- Import the following libraries:
+  - [Pandas](https://pandas.pydata.org/)
+  - [Numpy](https://numpy.org/)
+  - [Matplotlib](https://matplotlib.org/)
+  - [Keras](https://keras.io/)
+  - [Tensorflow](https://www.tensorflow.org/)
+  - [Sklearn](https://scikit-learn.org/stable/)
 
-- ...
+### Run
+You can run most of the phases of the data preprocessing pipeline ([`PREPROCESSING/preprocessing_pipeline.ipynb`](PREPROCESSING/preprocessing_pipeline.ipynb)) in your Jupyter Notebook by selecting the according cell and click "run". The phases which are not included (Truncation and Mirroring) are located in [`PREPROCESSING/truncate/generate_truncated_files.py`](PREPROCESSING/truncate/generate_truncated_files.py) and [`PREPROCESSING/mirror_left_files/mirror_files.py`](PREPROCESSING/mirror_left_files/mirror_files.py). You can run these scripts in your IDE.
+
+The training for the Machine Learning model can be done in the Jupyter Notebook located in [`ML/ML.ipynb`](ML/ML.ipynb) and the prediction of the path in [`MJM/minimim_jerk.py`](MJM/minimum_jerk.py).
 
 ## Project structure
 
 ### DATA
 
-This folder contains the processed data. For each preprocessing phase of the pipeline, there is a folder that contains all files in the corresponding processing state.*98_broken_prefiltered* contains all files sorted out in prefiltering, *99_broken* all files sorted out in filtering. *71_broken* contains all files sorted out by a specific metric during filtering, the metric can be set in jupyter notebook.
+This folder contains the processed data. For each preprocessing phase of the pipeline, there is a folder that contains all files in the corresponding processing state. *98_broken_prefiltered* contains all files sorted out in prefiltering, *99_broken* all files sorted out in filtering. *71_broken* contains all files sorted out by a specific metric during filtering, the metric can be set in jupyter notebook.
 
 ### MJM
 - contains script to model trajectories according to several minimum jerk models
@@ -30,20 +43,19 @@ This folder contains all Machine Learning related files.
 This folder contains everything necessary for preprocessing of recorded data to train the ML-model. Use the Jupyter Notebook preprocessing_pipeline.ipynb to run the complete preprocessing procedure.
 
 #### endpoints_comparison
-- contains script to generate files with endpoints of all trajectories on a certain date
-- contains datasets with endpoints sorted by date
+Contains script to generate files with endpoints of all trajectories on a certain date and datasets with endpoints sorted by date.
 #### manual_labeling
-- contains script to label tractories 'good' or 'bad' manually
+Contains script to label tractories 'good' or 'bad' manually
 #### mirror_left_files
-- contains scripts and utils for mirroring files of left body half
+Contains scripts and utils for mirroring files of left body half
 #### smooth
-- contains scripts and utils to smooth trajectories
+Contains scripts and utils to smooth trajectories
 #### truncate
-- contains scripts and utils to truncate trajectories
+Contains scripts and utils to truncate trajectories
 #### utils
-- contains scripts to open files in python or calculate velocities
+Contains scripts to open files in python or calculate velocities
 #### visualisation
-- contains python and octave scripts to visualise data for certain purposes
+Contains python and octave scripts to visualise data for certain purposes
 
 - **animateData(csvNumber, phaseNumber, side)**: Animates hand movement to estimate velocity profile
 - **drawAllBrokenFiles(max)**: Visualizes files sorted out in filtering with reasons
