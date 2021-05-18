@@ -38,7 +38,7 @@ def write_endpoints_to_csv(date, left_right):
         endpoint_file.close()
 
 
-directory = "../0_raw/"
+directory = "../../DATA/0_raw/"
 endpoint_directory = "./"
 file_list_directory = os.listdir(directory)
 
