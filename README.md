@@ -1,8 +1,10 @@
 # ArmMovementPredictionStudien
 
-Arm movement prediction for collaborative robotics based on neuronal networks.
+Arm movement prediction for collaborative robotics based on neuronal networks and minimum jerk model for curved point-to-point movements.
 
 ## Usage
+This project is documented in detail [here](Studienarbeit.pdf).
+
 ### Setup
 - Install Python 3.7
 - Install [Jupyter Notebook](https://jupyter.org/install.html)
