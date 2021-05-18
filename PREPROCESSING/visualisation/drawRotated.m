@@ -1,11 +1,10 @@
-# e.g. drawData(20020403011,0)
-# 0 stands for raw
+# e.g. drawRotated(20020403011)
 
 function drawRotated(csvNumber);
   if(csvNumber==0)
-    cd ..\DATA\8_rotated
+    cd ..\..\DATA\8_rotated
     dirList = glob("*");
-    cd ..\..\Preprocessing
+    cd ..\..\visualisation\Preprocessing
     maxFileNumber = length(dirList);
     figure;
     for i = 1:maxFileNumber
@@ -24,8 +23,8 @@ function drawRotated(csvNumber);
     zlabel('z');
     title('Alle rotierten Dateien')
   else
-    csvPathRaw = ["../DATA/7_filtered/" num2str(csvNumber) "_filtered_R.csv"];
-    csvPathRotated = ["../DATA/8_rotated/" num2str(csvNumber) "_rotated_R.csv"];
+    csvPathRaw = ["../../DATA/7_filtered/" num2str(csvNumber) "_filtered_R.csv"];
+    csvPathRotated = ["../../DATA/8_rotated/" num2str(csvNumber) "_rotated_R.csv"];
 
     error_L = false;
     error_R = false;

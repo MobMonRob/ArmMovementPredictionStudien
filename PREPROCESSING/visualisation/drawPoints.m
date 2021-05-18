@@ -1,9 +1,9 @@
 # e.g. drawPoints('endpoints_42')
 
 function drawPoints(side)
-    csvPath1 = ["../DATA/97_endpoints/endpoints_0305_" side ".csv"];
-    csvPath2 = ["../DATA/97_endpoints/endpoints_0403_" side ".csv"];
-    csvPath3 = ["../DATA/97_endpoints/endpoints_0423_" side ".csv"];
+    csvPath1 = ["../PREPROCESSING/endpoints_comparison/endpoints_0305_" side ".csv"];
+    csvPath2 = ["../PREPROCESSING/endpoints_comparison/endpoints_0403_" side ".csv"];
+    csvPath3 = ["../PREPROCESSING/endpoints_comparison/endpoints_0423_" side ".csv"];
     error = false;
     try
       D1 = dlmread(csvPath1, ";");

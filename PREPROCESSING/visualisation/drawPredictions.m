@@ -1,8 +1,7 @@
-# e.g. drawData(20020403011,0)
-# 0 stands for raw
+# e.g. drawPredictions()
 
 function drawPredictions(number=10);
-    csvPath = ["../ML_models/predicted_real_endpoints.csv"];
+    csvPath = ["../../ML/predictions/predicted_real_endpoints.csv"];
     error_file = false;
     try
       A = dlmread(csvPath, ";");

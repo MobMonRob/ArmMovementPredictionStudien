@@ -1,10 +1,10 @@
-# e.g. drawData(20020403011, 0)
+# e.g. drawMirrored(20020403011, 0)
 # 0 means original, 1 means right
 
 function drawMirrored(csvNumber, origOrRight);
-  csvPathOrig = ["../DATA/4_prefiltered/" num2str(csvNumber) "_prefiltered_L.csv"];
-  csvPathRight = ["../DATA/4_prefiltered/" num2str(csvNumber) "_prefiltered_R.csv"];
-  csvPathMirrored = ["../DATA/5_mirrored/" num2str(csvNumber) "_mirrored_L.csv"];
+  csvPathOrig = ["../../DATA/4_prefiltered/" num2str(csvNumber) "_prefiltered_L.csv"];
+  csvPathRight = ["../../DATA/4_prefiltered/" num2str(csvNumber) "_prefiltered_R.csv"];
+  csvPathMirrored = ["../../DATA/5_mirrored/" num2str(csvNumber) "_mirrored_L.csv"];
 
   error_O = false;
   error_L = false;
